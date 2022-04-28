@@ -21,6 +21,11 @@ export class uiS03 extends Component {
     },
   });
 
+  process(stringData) {
+    console.log("S03, process");
+    Alert.alert("S03 processed received: " + stringData);
+  }
+
   render() {
     return (
       <View Key="UI_S03" style={this.style.main}>
