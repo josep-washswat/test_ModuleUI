@@ -27,22 +27,19 @@ const jsonData = {
       id: "uiS03",
       imageUrl: "https://picsum.photos/400/200",
     },
-    {
-      id: "uiS01",
-      text1: "이것은",
-      text2: "테스트입니다.",
-    },
+    // {
+    //   id: "uiS01",
+    //   text1: "이것은",
+    //   text2: "테스트입니다.",
+    // },
   ],
 };
-
-let objectStorage = [];
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Main Routine
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 export default function App() {
   console.log("Rendering start");
-  objectStorage = [];
   return <View style={styles.container}>{processScreen()}</View>;
 }
 const styles = StyleSheet.create({
@@ -58,21 +55,9 @@ const styles = StyleSheet.create({
 // Process routine
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 function processScreen() {
-  const returnData = [];
+  return jsonData.elements.map((element) => {
+    const Component = uiClassFactory(element.id);
 
-  // Analysis UI JSON data and populate object instances
-  jsonData.elements.forEach(function (element) {
-    debug("-->" + element.id, element);
-    objectStorage.push({
-      id: element.id,
-      object: new (uiClassFactory(element.id))(element, objectStorage),
-    });
+    return <Component key={element.id} jsonData={element} />;
   });
-
-  // Render them
-  objectStorage.forEach(function (element) {
-    returnData.push(element.object.render());
-  });
-
-  return returnData;
 }

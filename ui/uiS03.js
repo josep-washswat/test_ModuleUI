@@ -1,39 +1,37 @@
-import { StyleSheet, Text, View, Alert, Button, Image } from "react-native";
-import { Component } from "react/cjs/react.production.min";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Alert, Image } from "react-native";
 
-export class uiS03 extends Component {
-  constructor(jsonData, objectStorage) {
-    super(jsonData);
-    this.state = {
-      imageUrl: { uri: jsonData.imageUrl },
-    };
-  }
+const UIS03 = ({ jsonData, objectStorage }) => {
+  const [imageUrl, setImageUrl] = useState();
 
-  style = StyleSheet.create({
-    main: {
-      backgroundColor: "violet",
-      fontSize: 40,
-      fontWeight: "bold",
-      alignItems: "center",
-      justifyContent: "center",
-      height: 120,
-      width: "100%",
-    },
-  });
+  useEffect(() => {
+    if (jsonData.imageUrl) {
+      setImageUrl({ uri: jsonData.imageUrl });
+    }
+  }, [jsonData.imageUrl]);
 
-  process(stringData) {
+  const process = (stringData) => {
     console.log("S03, process");
     Alert.alert("S03 processed received: " + stringData);
-  }
+  };
 
-  render() {
-    return (
-      <View Key="UI_S03" style={this.style.main}>
-        <Image
-          style={{ width: "100%", height: 110 }}
-          source={this.state.imageUrl}
-        />
-      </View>
-    );
-  }
-}
+  return (
+    <View Key="UI_S03" style={style.main}>
+      <Image style={{ width: "100%", height: 110 }} source={imageUrl} />
+    </View>
+  );
+};
+
+export default UIS03;
+
+const style = StyleSheet.create({
+  main: {
+    backgroundColor: "violet",
+    fontSize: 40,
+    fontWeight: "bold",
+    alignItems: "center",
+    justifyContent: "center",
+    height: 120,
+    width: "100%",
+  },
+});
