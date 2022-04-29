@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 export function debug(textData, objectData) {
   let displayText = null;
-  displayText = textData + "  ";
+  displayText = textData + '  ';
   displayText += JSON.stringify(objectData);
   console.log(displayText);
 }

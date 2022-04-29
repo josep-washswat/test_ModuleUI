@@ -1,17 +1,34 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Alert } from "react-native";
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, View, Alert } from 'react-native';
+
+//jotai useAtom
+import { useAtom } from 'jotai';
+
+//uiN01 buttonTextAtom component
+import { actionToggleAtom, buttonTextAtom } from '../atoms/uiN01Atom';
 
 const UIN01 = ({ jsonData, objectStorage }) => {
-  const [buttonText, setButtonText] = useState("Back Button");
+  const [buttonText, setButtonText] = useAtom(buttonTextAtom);
+  const [actionToggle, setActionToggle] = useAtom(actionToggleAtom);
 
-  const process = (stringData) => {
-    console.log("N01, process");
-    Alert.alert("N01 processed received: " + stringData);
-    setButtonText = stringData;
-  };
+  useEffect(() => {
+    if (actionToggle) {
+      console.log('UIN01');
+      const process = (stringData) => {
+        console.log('N01, process');
+        Alert.alert('N01 processed received: ' + stringData);
+        setButtonText(stringData);
+      };
+      process('hihi');
+      setActionToggle(() => false);
+    }
+  }, [actionToggle]);
 
-  console.log(jsonData);
-  console.log("N01,render");
+  useEffect(()=>{
+    console.log(jsonData.id)
+  })
+  // console.log(jsonData);
+  // console.log('N01,render');
   return (
     <View Key="UI_N01" style={style.main}>
       <Text>{buttonText}</Text>
@@ -22,10 +39,10 @@ const UIN01 = ({ jsonData, objectStorage }) => {
 export default UIN01;
 const style = StyleSheet.create({
   main: {
-    backgroundColor: "brown",
-    alignItems: "flex-start",
-    justifyContent: "center",
+    backgroundColor: 'brown',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
     height: 50,
-    width: "100%",
+    width: '100%',
   },
 });
