@@ -1,23 +1,18 @@
 import { StyleSheet, Text, View, Alert, Button, Image } from "react-native";
 import { Component } from "react/cjs/react.production.min";
 
-export class uiBlank extends Component {
-  constructor(jsonData, objectStorage) {
-    super(jsonData);
-    this.state = {};
-  }
+const UIBlank = ({ jsonData, objectStorage }) => {
+  return <View Key="UI_Blank" style={style.main} />;
+};
 
-  style = StyleSheet.create({
-    main: {
-      backgroundColor: "white",
-      alignItems: "flex-start",
-      justifyContent: "center",
-      height: 50,
-      width: "100%",
-    },
-  });
+const style = StyleSheet.create({
+  main: {
+    backgroundColor: "white",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    height: 50,
+    width: "100%",
+  },
+});
 
-  render() {
-    return <View Key="UI_Blank" style={this.style.main}></View>;
-  }
-}
+export default UIBlank;
