@@ -1,28 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Alert, Image } from 'react-native';
+import { StyleSheet, View, Alert, TextInput, Button } from 'react-native';
 
 //jotai useAtom
 import { useAtom } from 'jotai';
 
 //uiS03Atom
 import { actionToggleAtom, imageUrlAtom } from '../atoms/uiS03Atom';
+import useAfterRequest from '../hooks/useAfterRequest';
 
 const process = (stringData) => {
-  console.log('S03, process');
-  Alert.alert('S03 processed received: ' + stringData);
+  console.log('S04, process');
+  Alert.alert('S04 processed received: ' + stringData);
 };
-const UIS03 = ({ jsonData, objectStorage }) => {
+const UIS04 = ({ jsonData, objectStorage }) => {
   const [imageUrl, setImageUrl] = useAtom(imageUrlAtom);
   const [actionToggle, setActionToggle] = useAtom(actionToggleAtom);
+  const { request, data, isIdle } = useAfterRequest();
 
   useEffect(() => {
     if (jsonData.imageUrl) {
       setImageUrl({ uri: jsonData.imageUrl });
     }
   }, [jsonData.imageUrl]);
+
   useEffect(() => {
-    console.log(jsonData.id);
-  });
+    if (!isIdle) {
+      Alert.alert(data);
+    }
+    console.log(isIdle);
+  }, [data]);
+
   useEffect(() => {
     if (actionToggle) {
       process('hi');
@@ -32,12 +39,12 @@ const UIS03 = ({ jsonData, objectStorage }) => {
 
   return (
     <View style={style.main}>
-      <Image style={{ width: '100%', height: 110 }} source={imageUrl} />
+      <Button onPress={request} title="Hi" />
     </View>
   );
 };
 
-export default UIS03;
+export default UIS04;
 
 const style = StyleSheet.create({
   main: {
@@ -48,5 +55,11 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     height: 120,
     width: '100%',
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
