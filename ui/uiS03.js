@@ -11,18 +11,14 @@ const process = (stringData) => {
   console.log('S03, process');
   Alert.alert('S03 processed received: ' + stringData);
 };
-const UIS03 = ({ jsonData, objectStorage }) => {
-  const [imageUrl, setImageUrl] = useAtom(imageUrlAtom);
+const UIS03 = ({ jsonData }) => {
+  const { imageUrl } = jsonData;
   const [actionToggle, setActionToggle] = useAtom(actionToggleAtom);
 
   useEffect(() => {
-    if (jsonData.imageUrl) {
-      setImageUrl({ uri: jsonData.imageUrl });
-    }
-  }, [jsonData.imageUrl]);
-  useEffect(() => {
     console.log(jsonData.id);
   });
+
   useEffect(() => {
     if (actionToggle) {
       process('hi');
@@ -32,7 +28,7 @@ const UIS03 = ({ jsonData, objectStorage }) => {
 
   return (
     <View style={style.main}>
-      <Image style={{ width: '100%', height: 110 }} source={imageUrl} />
+      <Image style={{ width: '100%', height: 110 }} source={{ uri: imageUrl }} />
     </View>
   );
 };

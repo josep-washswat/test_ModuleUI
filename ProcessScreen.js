@@ -1,12 +1,13 @@
-import { useAtom } from 'jotai';
-import { UIDataAtom } from './atoms/UIDataAtom';
 import useUIData from './hooks/useUIData';
 import uiClassFactory from './ui/uiClassFactory';
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Process routine
+///////////////////////////////////////////////////////////////////////////////////////////////////
 const ProcessScreen = () => {
-  const { isLoading, data } = useUIData();
+  const { data } = useUIData();
 
-  if (isLoading) return null;
+  if (Object.keys(data).length === 0) return null;
 
   return data.elements.map((element, index) => {
     const Component = uiClassFactory(element.id);
