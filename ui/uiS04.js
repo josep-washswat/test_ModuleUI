@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Alert, TextInput, Button } from 'react-native';
+import { StyleSheet, View, Alert, Button } from 'react-native';
 
-//jotai useAtom
-import { useAtom } from 'jotai';
+//recoil useRecoilState
+import { useRecoilState } from 'recoil';
 
 //uiS03Atom
 import { actionToggleAtom, imageUrlAtom } from '../atoms/uiS03Atom';
@@ -13,7 +13,7 @@ const process = (stringData) => {
   Alert.alert('S04 processed received: ' + stringData);
 };
 const UIS04 = ({ jsonData, objectStorage }) => {
-  const [actionToggle, setActionToggle] = useAtom(actionToggleAtom);
+  const [actionToggle, setActionToggle] = useRecoilState(actionToggleAtom);
   const { request, data, isFetching } = useAfterRequest();
 
   useEffect(() => {

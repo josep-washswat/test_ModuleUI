@@ -1,9 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-//jotai useAtom
-import { useAtom } from 'jotai';
-
 //uiS0Atom
 import useAction from '../hooks/useAction';
 

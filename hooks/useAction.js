@@ -1,13 +1,13 @@
 import { useCallback } from 'react';
-import { useAtom } from 'jotai';
+import {useRecoilState} from 'recoil'
 import { actionToggleAtom as uiN01ActionToggleAtom } from '../atoms/uiN01Atom';
 import { actionToggleAtom as uiS02ActionToggleAtom } from '../atoms/uiN01Atom';
 import { actionToggleAtom as uiS03ActionToggleAtom } from '../atoms/uiN01Atom';
 
 const useAction = () => {
-  const [, setUIN01Action] = useAtom(uiN01ActionToggleAtom);
-  const [, setUIS02Action] = useAtom(uiS02ActionToggleAtom);
-  const [, setUIS03Action] = useAtom(uiS03ActionToggleAtom);
+  const [, setUIN01Action] = useRecoilState(uiN01ActionToggleAtom);
+  const [, setUIS02Action] = useRecoilState(uiS02ActionToggleAtom);
+  const [, setUIS03Action] = useRecoilState(uiS03ActionToggleAtom);
 
   const setAction = useCallback((target) => {
     switch (target) {

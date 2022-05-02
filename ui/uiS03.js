@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Alert, Image } from 'react-native';
 
-//jotai useAtom
-import { useAtom } from 'jotai';
+//recoil useRecoilState
+import { useRecoilState } from 'recoil';
 
 //uiS03Atom
-import { actionToggleAtom, imageUrlAtom } from '../atoms/uiS03Atom';
+import { actionToggleAtom } from '../atoms/uiS03Atom';
+
 
 const process = (stringData) => {
   console.log('S03, process');
@@ -13,7 +14,7 @@ const process = (stringData) => {
 };
 const UIS03 = ({ jsonData }) => {
   const { imageUrl } = jsonData;
-  const [actionToggle, setActionToggle] = useAtom(actionToggleAtom);
+  const [actionToggle, setActionToggle] = useRecoilState(actionToggleAtom);
 
   useEffect(() => {
     console.log(jsonData.id);
@@ -28,6 +29,7 @@ const UIS03 = ({ jsonData }) => {
 
   return (
     <View style={style.main}>
+
       <Image style={{ width: '100%', height: 110 }} source={{ uri: imageUrl }} />
     </View>
   );

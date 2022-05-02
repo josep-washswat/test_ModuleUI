@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Alert, Button, Image } from 'react-native';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import ProcessScreen from './ProcessScreen';
 import { Provider } from 'jotai';
+import {RecoilRoot} from 'recoil'
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Main Routine
@@ -11,11 +12,11 @@ const queryClient = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Provider>
+      <RecoilRoot>
         <View style={styles.container}>
           <ProcessScreen />
         </View>
-      </Provider>
+      </RecoilRoot>
     </QueryClientProvider>
   );
 }

@@ -1,3 +1,3 @@
-import { atom } from 'jotai';
+import { atom } from 'recoil';
 
-export const actionToggleAtom = atom(false);
+export const actionToggleAtom = atom({key:'actionToggleAtomRecoilS02', default:false});

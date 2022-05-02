@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Alert, Button, Image } from 'react-native';
+import { StyleSheet, Text, View,} from 'react-native';
 
 const UIS01 = ({ jsonData }) => {
   const { text1, text2, id } = jsonData;

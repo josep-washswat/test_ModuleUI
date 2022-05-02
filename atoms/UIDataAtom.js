@@ -1,3 +1,6 @@
-import { atom } from 'jotai';
+import { atom } from 'recoil';
 
-export const UIDataAtom = atom({});
+export const UIDataAtom = atom({
+    key:'uIDataAtom',
+    default:false
+});

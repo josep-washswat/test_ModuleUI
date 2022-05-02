@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Alert } from 'react-native';
 
-//jotai useAtom
-import { useAtom } from 'jotai';
-
+//recoil useRecoilState
+import {useRecoilState} from 'recoil'
 //uiN01 buttonTextAtom component
 import { actionToggleAtom } from '../atoms/uiN01Atom';
 
@@ -16,7 +15,7 @@ const process = (action, stringData) => {
 const UIN01 = ({ jsonData }) => {
   const { buttonText: btnText } = jsonData;
   const [buttonText, setButtonText] = useState(btnText);
-  const [actionToggle, setActionToggle] = useAtom(actionToggleAtom);
+  const [actionToggle, setActionToggle] = useRecoilState(actionToggleAtom);
 
   useEffect(() => {
     if (actionToggle) {
