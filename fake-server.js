@@ -38,7 +38,7 @@ const timer = (sleepTime) =>
     setTimeout(resolve, sleepTime);
   });
 
-export const getFakeServerData = async (sleepTime = 300) => {
+export const getFakeServerData = async (sleepTime = 1000) => {
   await timer(sleepTime);
   return jsonData;
 };

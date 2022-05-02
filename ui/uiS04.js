@@ -13,22 +13,14 @@ const process = (stringData) => {
   Alert.alert('S04 processed received: ' + stringData);
 };
 const UIS04 = ({ jsonData, objectStorage }) => {
-  const [imageUrl, setImageUrl] = useAtom(imageUrlAtom);
   const [actionToggle, setActionToggle] = useAtom(actionToggleAtom);
-  const { request, data, isIdle } = useAfterRequest();
+  const { request, data, isFetching } = useAfterRequest();
 
   useEffect(() => {
-    if (jsonData.imageUrl) {
-      setImageUrl({ uri: jsonData.imageUrl });
-    }
-  }, [jsonData.imageUrl]);
-
-  useEffect(() => {
-    if (!isIdle) {
+    if (!isFetching && data) {
       Alert.alert(data);
     }
-    console.log(isIdle);
-  }, [data]);
+  }, [isFetching, data]);
 
   useEffect(() => {
     if (actionToggle) {
@@ -39,7 +31,7 @@ const UIS04 = ({ jsonData, objectStorage }) => {
 
   return (
     <View style={style.main}>
-      <Button onPress={request} title="Hi" />
+      <Button onPress={request} title="Hi" disabled={isFetching} />
     </View>
   );
 };

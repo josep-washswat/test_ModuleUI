@@ -8,21 +8,15 @@ import { useAtom } from 'jotai';
 import useAction from '../hooks/useAction';
 
 const UIS02 = ({ jsonData }) => {
-  const [text1, setText1] = useState(jsonData.text1);
-  const [text2, setText2] = useState(jsonData.text2);
-  const [buttonText, setButtonText] = useState('');
+  const { text1, text2, buttonText, buttonTarget } = jsonData;
   const { setAction } = useAction();
+
   useEffect(() => {
     console.log(jsonData.id);
   });
-  useEffect(() => {
-    if (jsonData?.buttonText) {
-      setButtonText(jsonData.buttonText);
-    }
-  }, [jsonData.buttonText]);
 
   const handlePress = useCallback(() => {
-    setAction(jsonData.buttonTarget);
+    setAction(buttonTarget);
   }, []);
 
   return (

@@ -4,14 +4,10 @@ import { useAtom } from 'jotai';
 import useUIDataQuery from '../queries/useUIDataQuery';
 
 const useUIData = () => {
-  const { isLoading, data } = useUIDataQuery();
-  const [, setUIData] = useAtom(UIDataAtom);
-  useEffect(() => {
-    if (data) {
-      setUIData(data);
-    }
-  }, [data]);
-  return { isLoading, data };
+  const [data, setData] = useAtom(UIDataAtom);
+  const { isFetched } = useUIDataQuery(setData);
+
+  return { isFetched, data };
 };
 
 export default useUIData;

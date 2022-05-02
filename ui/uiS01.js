@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Alert, Button, Image } from 'react-native';
 
-const UIS01 = ({ jsonData, objectStorage }) => {
-  const [text1, setText1] = useState(jsonData.text1);
-  const [text2, setText2] = useState(jsonData.text2);
+const UIS01 = ({ jsonData }) => {
+  const { text1, text2, id } = jsonData;
+
   useEffect(() => {
-    console.log(jsonData.id);
+    console.log(id);
   });
 
   return (
