@@ -2,8 +2,7 @@ import { StyleSheet, Text, View, Alert, Button, Image } from 'react-native';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 import ProcessScreen from './ProcessScreen';
-import { Provider } from 'jotai';
-import {RecoilRoot} from 'recoil'
+import { RecoilRoot } from 'recoil';
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Main Routine

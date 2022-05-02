@@ -1,35 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Alert, Image } from 'react-native';
-
-//recoil useRecoilState
-import { useRecoilState } from 'recoil';
-
-//uiS03Atom
-import { actionToggleAtom } from '../atoms/uiS03Atom';
-
+import { Text, StyleSheet, View, Alert, Image } from 'react-native';
+import useAction from '../hooks/useAction';
 
 const process = (stringData) => {
-  console.log('S03, process');
   Alert.alert('S03 processed received: ' + stringData);
 };
 const UIS03 = ({ jsonData }) => {
-  const { imageUrl } = jsonData;
-  const [actionToggle, setActionToggle] = useRecoilState(actionToggleAtom);
+  const { imageUrl, id } = jsonData;
+  const { action } = useAction();
+  const [actionText, setActionText] = useState('');
 
   useEffect(() => {
-    console.log(jsonData.id);
-  });
-
-  useEffect(() => {
-    if (actionToggle) {
-      process('hi');
-      setActionToggle(false);
+    if (action.target === id) {
+      setActionText(action.props.text);
     }
-  }, [actionToggle]);
+  }, [action]);
+
+  useEffect(() => console.log(UIS03.name));
+  useEffect(() => {
+    if (action?.target === id) {
+      process('change!');
+    }
+  }, [action]);
 
   return (
     <View style={style.main}>
-
+      <Text>{actionText}</Text>
       <Image style={{ width: '100%', height: 110 }} source={{ uri: imageUrl }} />
     </View>
   );
@@ -39,7 +35,7 @@ export default UIS03;
 
 const style = StyleSheet.create({
   main: {
-    backgroundColor: 'violet',
+    backgroundColor: 'orange',
     fontSize: 40,
     fontWeight: 'bold',
     alignItems: 'center',
