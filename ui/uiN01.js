@@ -1,35 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Alert } from 'react-native';
 
-//recoil useRecoilState
-import {useRecoilState} from 'recoil'
-//uiN01 buttonTextAtom component
-import { actionToggleAtom } from '../atoms/uiN01Atom';
+import useAction from '../hooks/useAction';
 
 const process = (action, stringData) => {
-  console.log('N01, process');
   Alert.alert('N01 processed received: ' + stringData);
   action(stringData);
 };
 
 const UIN01 = ({ jsonData }) => {
-  const { buttonText: btnText } = jsonData;
+  const { buttonText: btnText, id } = jsonData;
   const [buttonText, setButtonText] = useState(btnText);
-  const [actionToggle, setActionToggle] = useRecoilState(actionToggleAtom);
+  const { action } = useAction();
 
   useEffect(() => {
-    if (actionToggle) {
+    if (action?.target === id) {
       process(setButtonText, 'change!');
-      setActionToggle(!actionToggle);
     }
-  }, [actionToggle]);
+  }, [action]);
 
-  useEffect(() => {
-    console.log(jsonData.id);
-  });
-
+  useEffect(() => console.log(UIN01.name));
   return (
-    <View Key="UI_N01" style={style.main}>
+    <View style={style.main}>
       <Text>{buttonText}</Text>
     </View>
   );

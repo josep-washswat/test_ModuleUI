@@ -4,10 +4,7 @@ import { StyleSheet, View, Alert, Button, Text } from 'react-native';
 import useAction from '../hooks/useAction';
 import useAfterRequest from '../hooks/useAfterRequest';
 
-const process = (stringData) => {
-  Alert.alert('S04 processed received: ' + stringData);
-};
-const UIS04 = ({ jsonData, objectStorage }) => {
+const UIS05 = ({ jsonData, objectStorage }) => {
   const { id } = jsonData;
   const { action } = useAction();
   const { request, data, isFetching } = useAfterRequest();
@@ -26,7 +23,7 @@ const UIS04 = ({ jsonData, objectStorage }) => {
     }
   }, [isFetching, data]);
 
-  useEffect(() => console.log(UIS04.name));
+  useEffect(() => console.log(UIS05.name));
   return (
     <View style={style.main}>
       <Text>{actionText}</Text>
@@ -35,7 +32,7 @@ const UIS04 = ({ jsonData, objectStorage }) => {
   );
 };
 
-export default UIS04;
+export default UIS05;
 
 const style = StyleSheet.create({
   main: {
